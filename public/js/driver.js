@@ -5,34 +5,25 @@ $(document).ready(function () {
 
     var url = window.location.search;
     var userId;
-    var driverName = $(".driverName");
-    var rides;
+    var users;
+    var driverName;
 
-    // if (url.indexOf("?user_id=") !== -1) {
-    //     userId = url.split("=")[1];
-    //     getRides(userId);
-    //     console.log("userId"+userId);
-    // }
-
-
-    // function getRides(user) {
-    //     userId = user || "";
-    //     if (userId) {
-    //         userId = "/?user_id=" + userId;
-    //     }
-    //     $.get("/api/rides" + userId, function (data) {
-    //         // console.log("Rides", data);
-    //         rides = data;
-    //         driverName.append(data.userTest.userName)
-
-    //     });
-    // }
-
-        if (url.indexOf("?user_id=") !== -1) {
+    if (url.indexOf("?user_id=") !== -1) {
         userId = url.split("=")[1];
-        console.log("userId is "+userId);
+        console.log("userId is " + userId);
+        getUserName();
     }
 
+    function getUserName(author) {
+        $.get("/api/users", function (data) {
+            // console.log(data);
+            users = data;
+            driverName = users[userId - 1].userName;
+            // console.log(driverName);
+            $(".driverName").append(driverName);
+
+        })
+    }
 
 
 

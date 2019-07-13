@@ -22,8 +22,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-// require("./routes/apiRoutes")(app);
-// require("./routes/htmlRoutes")(app);
+require("./routes/htmlRoutes")(app);
 require("./routes/driver-api-routes")(app);
 require("./routes/userTest-api-routes")(app);
 
