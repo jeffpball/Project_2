@@ -22,7 +22,7 @@ module.exports = function(app) {
 //     });
 //   });
 
-  // index route loads driver.html
+  // index routes loads driver.html
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/driver.html"));
   });
