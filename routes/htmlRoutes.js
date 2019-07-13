@@ -27,6 +27,11 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/driver.html"));
   });
 
+  app.get("/rides", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/driver.html"));
+  });
+
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

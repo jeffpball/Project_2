@@ -4,8 +4,8 @@ module.exports = function(app) {
   app.get("/api/users", function(req, res) {
     db.userTest.findAll({
       include: [db.driverRide]
-    }).then(function(dbUser) {
-      res.json(dbUser);
+    }).then(function(dbuserTest) {
+      res.json(dbuserTest);
     });
   });
 
@@ -15,14 +15,14 @@ module.exports = function(app) {
         id: req.params.id
       },
       include: [db.driverRide]
-    }).then(function(dbUser) {
-      res.json(dbUser);
+    }).then(function(dbuserTest) {
+      res.json(dbuserTest);
     });
   });
 
-  app.driverRide("/api/users", function(req, res) {
-    db.userTest.create(req.body).then(function(dbUser) {
-      res.json(dbUser);
+  app.post("/api/users", function(req, res) {
+    db.userTest.create(req.body).then(function(dbuserTest) {
+      res.json(dbuserTest);
     });
   });
 

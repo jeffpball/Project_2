@@ -6,24 +6,31 @@ $(document).ready(function () {
     var url = window.location.search;
     var userId;
     var driverName = $(".driverName");
+    var rides;
 
-    if (url.indexOf("?user_id=") !== -1) {
+    // if (url.indexOf("?user_id=") !== -1) {
+    //     userId = url.split("=")[1];
+    //     getRides(userId);
+    //     console.log("userId"+userId);
+    // }
+
+
+    // function getRides(user) {
+    //     userId = user || "";
+    //     if (userId) {
+    //         userId = "/?user_id=" + userId;
+    //     }
+    //     $.get("/api/rides" + userId, function (data) {
+    //         // console.log("Rides", data);
+    //         rides = data;
+    //         driverName.append(data.userTest.userName)
+
+    //     });
+    // }
+
+        if (url.indexOf("?user_id=") !== -1) {
         userId = url.split("=")[1];
-        getRides(userId);
-    }
-
-
-    function getRides(user) {
-        userId = user || "";
-        if (userId) {
-            userId = "/?user_id=" + userId;
-        }
-        $.get("/api/rides" + userId, function (data) {
-            // console.log("Rides", data);
-            rides = data;
-            driverName.append(data.userTest.user_name)
-
-        });
+        console.log("userId is "+userId);
     }
 
 
