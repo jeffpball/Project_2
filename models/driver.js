@@ -26,6 +26,17 @@ module.exports = function(sequelize, DataTypes) {
       },
     });
 
+    driverRide.associate = function(models) {
+        // We're saying that a Driver-ride should belong to a User
+        // A Driver-ride can't be created without a User due to the foreign key constraint
+        driverRide.belongsTo(models.userTest, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+      };
+    
+
     return driverRide;
   };
   

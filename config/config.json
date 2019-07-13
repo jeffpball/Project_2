@@ -8,7 +8,7 @@
   },
   "test": {
     "username": "root",
-    "password": "process.env.MYSQL_PASSWORD",
+    "password": "19850418xj",
     "database": "driver_db",
     "host": "localhost",
     "dialect": "mysql",
