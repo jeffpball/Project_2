@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.INTEGER,
           allowNull: false,
       },
-      gender_riders: {
+      gender: {
            type: DataTypes.STRING,
            allowNull: true,
       },
@@ -24,6 +24,16 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.DECIMAL,
           allowNull: true,
       },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: new Date()
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: new Date()
+      }
     });
 
     userTest.associate = function(models) {

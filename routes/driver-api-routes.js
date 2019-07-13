@@ -9,6 +9,8 @@ module.exports = function (app) {
         }
         db.driverRide.findAll({
             where: query,
+            include: [db.userTest.user_name]
+
         }).then(function (dbRides) {
             res.json(dbRides);
         });
@@ -20,6 +22,7 @@ module.exports = function (app) {
             where: {
                 id: req.params.id
             },
+            include: [db.userTest.user_name]
         }).then(function (dbRides) {
             res.json(dbRides);
         });
@@ -51,8 +54,8 @@ module.exports = function (app) {
                 where: {
                     id: req.body.id
                 }
-            }).then(function (dbRides) {
-            res.json(dbRides);
+            }).then(function (dbPost) {
+            res.json(dbPost);
         });
     });
 };

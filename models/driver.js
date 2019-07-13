@@ -24,6 +24,16 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: true,
 
       },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: new Date()
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: new Date()
+      }
     });
 
     driverRide.associate = function(models) {
