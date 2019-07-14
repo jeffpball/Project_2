@@ -7,7 +7,7 @@ $(document).ready(function () {
     var userId;
     var users;
     var driverName;
-    var female_ride_only;
+    var female_ride_option = false;
 
 
     if (url.indexOf("?user_id=") !== -1) {
@@ -30,10 +30,10 @@ $(document).ready(function () {
     $("#rideForm").on("click", handleFormSubmit);
     $('input[type="checkbox"]').click(function(){
         if($(this).prop("checked") == true){
-            female_ride_only = true;
+            female_ride_option = true;
         }
         else if($(this).prop("checked") == false){
-            female_ride_only = false;
+            female_ride_option = false;
         }
     });
 
@@ -42,68 +42,45 @@ $(document).ready(function () {
     function handleFormSubmit(envent) {
         event.preventDefault();
         console.log("submit success!!")
-        // // Wont submit the post if the following info is missing
-        // if (!$(".departureDateTime").val() || !$("#pickupAddress1").val().trim()
-        //     || !$("#pickupCity").val().trim() ||
-        //     !$("#pickupState").val().trim() || !$("#pickupZip").val().trim() ||
-        //     !$("#dropoffAddress1").val().trim() || !$("#dropoffAddress2").val().trim() ||
-        //     !$("#dropoffCity").val().trim() || !$("#dropoffState").val().trim() ||
-        //     !$("#dropoffZip").val().trim() || !$("#riderNumber").val()
-        // ) {
-        //     return;
-        // }
-
+        // Wont submit the post if the following info is missing
+        if (!$("#datetimepicker4").find("input").val() || !$("#pickupAddress1").val().trim()
+            || !$("#pickupCity").val().trim() ||!$("#pickupState").val().trim() 
+            || !$("#pickupZip").val().trim() ||!$("#dropoffAddress1").val().trim() || 
+            !$("#dropoffCity").val().trim() || !$("#dropoffState").val().trim() ||
+            !$("#dropoffZip").val().trim() || !$("#riderNumber").val()
+        ) {
+            return;
+        }
+       
         // Constructing a newPost object to hand to the database
-        // var newRide = {
-        //     departure_time: $(".departureDateTime").val(),
+        var newRide = {
+            departure_time: $("#datetimepicker4").find("input").val(),
 
-        //     pick_up_address: $("#pickupAddress1").val().trim() + "," +
-        //         $("#pickupAddress2").val().trim() + "," + $("#pickupCity").val().trim() +
-        //         "," + $("#pickupState").val().trim() + "," + $("#pickupZip").val().trim(),
+            pick_up_address: $("#pickupAddress1").val().trim() + "," +
+                $("#pickupAddress2").val().trim() + "," + $("#pickupCity").val().trim() +
+                "," + $("#pickupState").val().trim() + "," + $("#pickupZip").val().trim(),
 
-        //     drop_off_address: $("#dropoffAddress1").val().trim() + "," +
-        //         $("#dropoffAddress2").val().trim() + "," + $("#dropoffCity").val().trim() +
-        //         "," + $("#dropoffState").val().trim() + "," + $("#dropoffZip").val().trim(),
+            drop_off_address: $("#dropoffAddress1").val().trim() + "," +
+                $("#dropoffAddress2").val().trim() + "," + $("#dropoffCity").val().trim() +
+                "," + $("#dropoffState").val().trim() + "," + $("#dropoffZip").val().trim(),
 
-        //     max_number_riders: $("#riderNumber").val(),
+            max_number_riders: $("#riderNumber").val(),
 
-        //     female_ride_only: $("#femaleRide").val(),
+            female_ride_only: female_ride_option,
 
-        //     userTestId: userId
-        // };
+            userTestId: userId
+        };
 
 
-        // submitRide(newRide);
+        submitRide(newRide);
         // window.location.reload();
-        // console.log(newRide)
-
-        var departure_time = $("#datetimepicker4").find("input").val();
-        var pick_up_address = $("#pickupAddress1").val().trim() + "," +
-            $("#pickupAddress2").val().trim() + "," + $("#pickupCity").val().trim() +
-            "," + $("#pickupState").val().trim() + "," + $("#pickupZip").val().trim();
-
-        var drop_off_address = $("#dropoffAddress1").val().trim() + "," +
-            $("#dropoffAddress2").val().trim() + "," + $("#dropoffCity").val().trim() +
-            "," + $("#dropoffState").val().trim() + "," + $("#dropoffZip").val().trim();
-
-        var max_number_riders = $("#riderNumber").val();
-        
-
-        console.log(departure_time);
-        console.log(pick_up_address);
-        console.log(drop_off_address);
-        console.log(max_number_riders);
-        console.log(female_ride_only);
-
-        
-
-
+        console.log(newRide)
 
     }
 
     function submitRide(ride) {
         $.post("/api/rides", ride, function (data) {
-            // console.log(departure_time);
+            console.log("stored in mysql " + data);
         });
     }
 })
