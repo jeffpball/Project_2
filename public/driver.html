@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Schedule a ride</title>
     <!-- Latest compiled and minified CSS & JS -->
-    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+    <link rel="stylesheet" href="styles/styles.css" media="screen" title="no title">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -167,9 +167,12 @@
             </div>
         </div>
         <br>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="femaleRide">
-            <label id= "femaleRideCheck"class="custom-control-label" for="femaleRide">Female ride only</label>
+        <!-- <div class="custom-control custom-checkbox">
+            <input type="checkbox" name="planned_checked" class="custom-control-input" checked id="femaleRide">
+            <label class="custom-control-label" for="femaleRide">Female ride only</label>
+        </div> -->
+        <div class="checkbox">
+            <label><input type="checkbox" value="" id="femaleRide">Female ride only</label>
         </div>
         <br>
         <br>

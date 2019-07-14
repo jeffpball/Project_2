@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var driverRide = sequelize.define("driverRide", {
       departure_time: {
-          type: DataTypes.TIME,
+          type: DataTypes.DATE,
           allowNull: false,
       },
       pick_up_address: {
