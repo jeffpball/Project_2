@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "exampledb",
+    "password": "bananas",
+    "database": "comfyDB",
     "host": "localhost",
     "dialect": "mysql"
   },
