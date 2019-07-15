@@ -6,27 +6,30 @@ $(document).ready(function () {
 
     var url = window.location.search;
     var userId;
-    var users;
     var driverName;
     var female_ride_option = false;
 
 
     if (url.indexOf("?user_id=") !== -1) {
         userId = url.split("=")[1];
-        // console.log("userId is " + userId);
         getUserName();
     }
 
-    function getUserName(author) {
+
+    function getUserName() {
         $.get("/api/users", function (data) {
             // console.log(data);
-            users = data;
-            driverName = users[userId - 1].userName;
-            // console.log(driverName);
+            for (var i = 0; i < data.length; i++ ){
+                // userId is string, need to convert it to integer
+                if (parseInt(userId) === data[i].id){
+                    driverName = data[i].userName;
+                }
+            }
             $(".driverName").append(driverName);
 
         })
     }
+
 
     $("#rideForm").on("click", handleFormSubmit);
     $('input[type="checkbox"]').click(function(){
@@ -75,14 +78,17 @@ $(document).ready(function () {
 
 
         submitRide(newRide);
-        // window.location.reload();
-        console.log(newRide)
+        // console.log(newRide)
 
     }
 
     function submitRide(ride) {
         $.post("/api/rides", ride, function (data) {
-            console.log("stored in mysql " + data);
+            console.log("Data stored in mysql " + data);
         });
+        window.location.reload();
+
     }
+
+
 })
