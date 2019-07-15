@@ -1,3 +1,8 @@
 node_modules
 .env
 config/
+app-env
+node_modules
+config/config.json
+models/rides.js
+package-lock.json

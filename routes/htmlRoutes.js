@@ -40,4 +40,13 @@ module.exports = function(app) {
   // app.get("*", function(req, res) {
   //   res.render("404");
   // });
+// load ride search page
+app.get("/rides", function (req, res) {
+  res.render("rider-form");
+})
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+  }); 
 };
