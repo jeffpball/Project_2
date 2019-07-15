@@ -34,14 +34,4 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/rides/search/:id/:id1", function (req, res) {
-    db.Rides.findAll({
-        where: {
-            departure_time: {
-                $between: [moment(id).format]
-            }
-        }
-    })
-    res.json("id " + req.params.id + " id2 " + req.params.id1)
- })
 };
