@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     // The code below handles the case where we want to get ride posts for a specific driver/user
@@ -51,10 +52,11 @@ $(document).ready(function () {
         ) {
             return;
         }
-       
+        
         // Constructing a newPost object to hand to the database
         var newRide = {
-            departure_time: $("#datetimepicker4").find("input").val(),
+
+            departure_time : $("#datetimepicker4").find("input").val(),
 
             pick_up_address: $("#pickupAddress1").val().trim() + "," +
                 $("#pickupAddress2").val().trim() + "," + $("#pickupCity").val().trim() +
