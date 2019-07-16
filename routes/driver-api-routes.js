@@ -9,7 +9,7 @@ module.exports = function (app) {
         }
         db.driverRide.findAll({
             where: query,
-            include: [db.User]
+            // include: [db.User]
 
         }).then(function (dbRides) {
             res.json(dbRides);

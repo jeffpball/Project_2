@@ -14,7 +14,8 @@ module.exports = function (app) {
       res.json({
         id: dbUser.id,
         email: dbUser.email,
-        userName: dbUser.userName
+        userName: dbUser.userName,
+        driverRide: dbUser.driverRides
 
       });
     });
@@ -47,21 +48,21 @@ module.exports = function (app) {
     res.redirect("/");
   });
 
-  // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function (req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        id: req.user.id,
-        email: req.user.email,
-        userName: req.user.userName
-      });
-    }
-  });
+  // // Route for getting some data about our user to be used client side
+  // app.get("/api/user_data", function (req, res) {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     res.json({});
+  //   } else {
+  //     // Otherwise send back the user's email and id
+  //     // Sending back a password, even a hashed password, isn't a good idea
+  //     res.json({
+  //       id: req.user.id,
+  //       email: req.user.email,
+  //       userName: req.user.userName
+  //     });
+  //   }
+  // });
 
 
 
