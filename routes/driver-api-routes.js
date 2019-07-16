@@ -5,11 +5,11 @@ module.exports = function (app) {
     app.get("/api/rides", function (req, res) {
         var query = {};
         if (req.query.user_id) {
-            query.userId = req.query.userTest_id;
+            query.userId = req.query.User_id;
         }
         db.driverRide.findAll({
             where: query,
-            include: [db.userTest]
+            include: [db.User]
 
         }).then(function (dbRides) {
             res.json(dbRides);
@@ -22,7 +22,7 @@ module.exports = function (app) {
             where: {
                 id: req.params.id
             },
-            include: [db.userTest]
+            include: [db.User]
         }).then(function (dbRides) {
             res.json(dbRides);
         });
