@@ -3,17 +3,6 @@ var passport = require("../config/passport");
 
 
 module.exports = function (app) {
-  app.get("/api/users", function (req, res) {
-    db.User.findAll({
-      include: [db.driverRide]
-    }).then(function (dbUser) {
-      res.json({
-        id: req.user.id,
-        email: req.user.email,
-        userName: req.user.userName
-      });
-    });
-  });
 
   app.get("/api/users/:id", function (req, res) {
     db.User.findOne({
@@ -23,9 +12,9 @@ module.exports = function (app) {
       include: [db.driverRide]
     }).then(function (dbUser) {
       res.json({
-        id: req.user.id,
-        email: req.user.email,
-        userName: req.user.userName
+        id: dbUser.id,
+        email: dbUser.email,
+        userName: dbUser.userName
 
       });
     });

@@ -14,17 +14,13 @@ $(document).ready(function () {
         userId = url.split("=")[1];
         getUserName();
     }
-
+    
 
     function getUserName() {
-        $.get("/api/users", function (data) {
-            // console.log(data);
-            for (var i = 0; i < data.length; i++ ){
-                // userId is string, need to convert it to integer
-                if (parseInt(userId) === data[i].id){
-                    driverName = data[i].userName;
-                }
-            }
+        $.get("/api/users/"+userId, function (data) {
+                driverName = data.userName;
+                console.log(driverName);
+            
             $(".driverName").append(driverName);
 
         })
