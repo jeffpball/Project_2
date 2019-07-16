@@ -68,21 +68,21 @@ $(document).ready(function () {
             max_number_riders: $("#riderNumber").val(),
 
             female_ride_only: female_ride_option,
-
-            userTestId: userId
+            //driverrides foreign key (user id)
+            UserId: userId
         };
 
 
         submitRide(newRide);
-        // console.log(newRide)
 
     }
 
     function submitRide(ride) {
         $.post("/api/rides", ride, function (data) {
-            console.log("Data stored in mysql " + data);
+            // console.log("Data stored in mysql " + data);
+            window.location.reload();
+
         });
-        window.location.reload();
 
     }
 
