@@ -5,29 +5,26 @@
   <title>ComfyRide | Signup</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <div style="display: flex; flex-direction:row; align-items: baseline;">
-              <i class="fas fa-car fa-2x"></i>
-              <h3 style="margin-left: 5px;">ComfyRide</h3>
-            </div>
-          </div>
-        </div>
-      </nav>
-    <div class="container-fluid">
+  <nav class="navbar navbar-light bg-light" >
+    <div class="container-fluid" style="display: flex; align-items: flex-start; justify-content: flex-start;">
       <div class="navbar-header">
+        <div style="display: flex; flex-direction:row; align-items: center;">
+          <i class="fas fa-car fa-2x" style="color:rgb(0, 207, 138)"></i>
+          <h3 style="margin-left: 5px; margin-bottom: 0px; padding: 0; color:rgb(0, 207, 138)">ComfyRide</h3>
+        </div>
       </div>
     </div>
   </nav>
+   
+  </nav>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-6 bg-light" style="margin: auto; margin-top: 50px; border-radius: 10px; padding: 20px;">
         <h2>Sign Up</h2>
         <form class="signup">
           <div class="form-group">
@@ -54,7 +51,7 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-default">Sign Up</button>
+          <button type="submit" class="btn btn-light">Sign Up</button>
         </form>
         <br />
         <p>Or log in <a href="/login">here</a></p>
