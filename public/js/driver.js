@@ -80,8 +80,7 @@ $(document).ready(function () {
     function submitRide(ride) {
         $.post("/api/rides", ride, function (data) {
             // console.log("Data stored in mysql " + data);
-            window.location.reload();
-
+            window.location.replace("/members/?user_id=" + userId);
         });
 
     }
