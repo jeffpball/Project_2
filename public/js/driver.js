@@ -69,9 +69,12 @@ $(document).ready(function () {
 
             female_ride_only: female_ride_option,
             //driverrides foreign key (user id)
-            UserId: userId
-        };
+            UserId: userId,
 
+            type_ride: "Driver"
+
+
+        };
 
         submitRide(newRide);
 

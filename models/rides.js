@@ -1,5 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
     var driverRide = sequelize.define("driverRide", {
+      type_ride: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },  
       departure_time: {
           type: DataTypes.DATE,
           allowNull: false,
@@ -19,6 +23,13 @@ module.exports = function(sequelize, DataTypes) {
             len: [1,4]
           }
       },
+      actual_number_riders: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        validate: {
+          len: [1, 4]
+        }
+      },  
       female_ride_only: {
           type: DataTypes.BOOLEAN,
           allowNull: true,

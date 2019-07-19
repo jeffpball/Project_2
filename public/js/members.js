@@ -29,6 +29,7 @@ $(document).ready(function(){
     } )
 
     $("#findRide").on("click", function(){
+        
         window.location.replace("/rides/?user_id=" + userId);
   
       } )
