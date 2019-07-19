@@ -25,7 +25,7 @@ var postRides = function (startT, endT, arrAddress) {
             riderLoc: arrAddress
         })
     }).then(function(response){
-        console.log(response[1]);
+        console.log(response);
     })
 }
 
