@@ -5,7 +5,6 @@ $("#sub").on("click", function () {
     //initialze moment objects
     var mS = moment(windowStart).toDate();
     var mE = moment(windowEnd).toDate();
-    console.log(mS, mE);
     var riderLocations = formData();
     //callback for api call
     postRides(mS, mE, riderLocations);
@@ -22,7 +21,8 @@ var postRides = function (startT, endT, arrAddress) {
         data: JSON.stringify({
             startTime: startT,
             endTime: endT,
-            riderLoc: arrAddress
+            riderStart: arrAddress[0],
+            riderEnd: arrAddress[1]
         })
     }).then(function(response){
         console.log(response);
