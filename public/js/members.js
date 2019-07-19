@@ -23,7 +23,7 @@ $(document).ready(function(){
         })
     }
 
-    $("createRide").on("click", function(){
+    $("#createRide").on("click", function(){
       window.location.replace("/driver/?user_id=" + userId);
 
     } )
