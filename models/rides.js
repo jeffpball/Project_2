@@ -1,9 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     var driverRide = sequelize.define("driverRide", {
-      type_ride: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },  
       departure_time: {
           type: DataTypes.DATE,
           allowNull: false,

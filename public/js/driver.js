@@ -1,4 +1,5 @@
 
+
 $(document).ready(function () {
 
     // The code below handles the case where we want to get ride posts for a specific driver/user
@@ -69,10 +70,7 @@ $(document).ready(function () {
 
             female_ride_only: female_ride_option,
             //driverrides foreign key (user id)
-            UserId: userId,
-
-            type_ride: "Driver"
-
+            UserId: userId
 
         };
 
