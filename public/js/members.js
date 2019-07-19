@@ -23,11 +23,15 @@ $(document).ready(function(){
         })
     }
 
-    $("#setRide").on("click", function(){
+    $("createRide").on("click", function(){
       window.location.replace("/driver/?user_id=" + userId);
 
     } )
 
+    $("#findRide").on("click", function(){
+        window.location.replace("/rides/?user_id=" + userId);
+  
+      } )
 
 
 
