@@ -1,24 +1,20 @@
 var moment = require('moment');
+var distance = require('google-distance-matrix');
 
+//fucntion to determine distance between start and end points
 var distanceCall = function (riderStart, riderEnd, driverStart, driverEnd) {
-    var service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix(
-        {
-            origins: [riderStart, riderEnd],
-            destinations: [driverStart, driverEnd],
-            travelMode: 'DRIVING',
-            unitSystem: google.maps.UnitSystem.IMPERIAL,
-        }, callback());
-
-    function callback(response, status) {
-        if (status !== google.maps.DistanceMatrixStatus.OK) {
-            console.log('Error:', status);
-        } else {
-            console.log(response);
-            $("#distance").text(response.rows[0].elements[0].distance.text).show();
-            $("#duration").text(response.rows[0].elements[0].duration.text).show();
+    var origins = [riderStart, riderEnd]
+    var destinations = [driverStart, driverEnd]
+    distance.key(process.env.GOOGLE_API_KEY)
+    distance.units("imperial");
+    distance.matrix(origins, destinations, function(err, distances){
+        if (err){
+            return console.log(err);
         }
-    }
+        if (distances.status == 'OK'){
+            return distances
+        } 
+    })
 }
 //function to do time math
 var timeMath = function (data, startTime, endTime) {
@@ -34,7 +30,13 @@ var timeMath = function (data, startTime, endTime) {
     return ridesPosTime;
 };
 
+//function to clean up adress inputs
+var addRG = function(str){
+    return str.replace(/[, ]+/g, " ").trim();
+}
+
 module.exports = {
     timeMath: timeMath,
-    distanceCall: distanceCall
+    distanceCall: distanceCall,
+    addRG: addRG
 }
