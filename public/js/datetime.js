@@ -18,7 +18,7 @@ var postRides = function (startT, endT, arrAddress) {
             "Content-Type": "application/json"
         },
         type: "POST",
-        url: "api/rides/search",
+        url: "api/rides/search/",
         data: JSON.stringify({
             startTime: startT,
             endTime: endT,
