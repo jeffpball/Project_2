@@ -2,39 +2,19 @@ var db = require("../models");
 
 
 module.exports = function (app) {
-
-
-  // // Get all examples
-  // app.get("/api/examples", function (req, res) {
-  //   db.Example.findAll({}).then(function (dbExamples) {
-  //     res.json(dbExamples);
-  //   });
-  // });
-
-  // // Create a new example
-  // app.post("/api/examples", function (req, res) {
-  //   db.Example.create(req.body).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-  // Get rides between two times
-  app.get("/api/rides/search/:id/:id1", function (req, res) {
-    // db.Rides.findAll({
-    //     where: {
-    //         departure_time: {
-    //             $between: [moment(id).format]
-    //         }
-    //     }
-    // })
-    res.json("id " + req.params.id + " id2 " + req.params.id1)
-})
-
-  // // Delete an example by id
-  // app.delete("/api/examples/:id", function (req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
+  app.post("/api/rides/search/", function (req, res) {
+    console.log(req.body.startTime);
+    db.driverRide.findAll({
+        // where: {
+        //     departure_time: {
+        //         $between: [req.body.startTime, req.body.endTime]
+        //         //$between: ["2019-07-16 11:00:00", "2019-07-16 13:00:00"]
+        //     }
+        // }
+    }).then(function(response){
+      res.json("t1 " + req.body.startTime + " t2 " + req.body.endTime + " db " + response)
+    })
+    
+  });
 
 };
