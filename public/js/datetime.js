@@ -12,6 +12,9 @@ $("#sub").on("click", function () {
     postRides(mS, mE, riderLocations, riderZips);
 })
 //onclick for map button
+$("#").on("click", function () {
+
+})
 
 //api post call taking two time parameters and two address
 var postRides = function (startT, endT, arrAddress, arrZip) {
@@ -27,31 +30,39 @@ var postRides = function (startT, endT, arrAddress, arrZip) {
             riderStart: arrAddress[0],
             riderEnd: arrAddress[1],
             riderStartZip: arrZip[0],
-            riderEndZip : arrZip[1]
+            riderEndZip: arrZip[1]
         })
-    }).then(function(response){
+    }).then(function (response) {
         console.log(response);
+        var tableData = []
+        for(var i = 0; i < response.length; i++){
+            var tableRow
+        }
     })
 }
 
+//function to build table from response
+var rideReturn = function (data) {
+    
+}
 //function to create a map with points and lines on it
 
 
 //function to retrieve data from form 
-var formData = function(){
+var formData = function () {
     var locations = [];
     var locOne = $("#inputAddress").val().trim() + "," +
-    $("#inputAddress2").val().trim() + "," + $("#inputCity").val().trim() +
-    "," + $("#inputState").val().trim() + "," + $("#inputZip").val().trim()
+        $("#inputAddress2").val().trim() + "," + $("#inputCity").val().trim() +
+        "," + $("#inputState").val().trim() + "," + $("#inputZip").val().trim()
     var locTwo = $("#destAddress").val().trim() + "," +
-    $("#destAddress2").val().trim() + "," + $("#destCity").val().trim() +
-    "," + $("#destState").val().trim() + "," + $("#destZip").val().trim()
+        $("#destAddress2").val().trim() + "," + $("#destCity").val().trim() +
+        "," + $("#destState").val().trim() + "," + $("#destZip").val().trim()
     locations.push(locOne, locTwo);
     return locations
 }
 
 //function to retrieve zipcodes
-var formZips = function(){
+var formZips = function () {
     var zips = [];
     var zipOne = $("#inputZip").val().trim();
     var zipTwo = $("#destZip").val().trim();
