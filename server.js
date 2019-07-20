@@ -35,6 +35,7 @@ require("./routes/htmlRoutes")(app);
 require("./routes/apiRoutes.js")(app);
 require("./routes/driver-api-routes")(app);
 require("./routes/user-api-routes")(app);
+require("./routes/joinRide-api-routes")(app);
 
 
 var syncOptions = { force: false };

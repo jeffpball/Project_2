@@ -1,3 +1,4 @@
+// import { stringify } from "querystring";
 
 
 $(document).ready(function () {
@@ -9,6 +10,7 @@ $(document).ready(function () {
     var userId;
     var driverName;
     var female_ride_option = false;
+    var email;
 
 
     if (url.indexOf("?user_id=") !== -1) {
@@ -20,7 +22,9 @@ $(document).ready(function () {
     function getUserName() {
         $.get("/api/users/"+userId, function (data) {
                 driverName = data.userName;
+                email = data.email;
                 console.log(driverName);
+                console.log(email);
             
             $(".driverName").append(driverName);
 
@@ -84,7 +88,6 @@ $(document).ready(function () {
 
     function submitRide(ride) {
         $.post("/api/rides", ride, function (data) {
-            // console.log("Data stored in mysql " + data);
             window.location.replace("/members/?user_id=" + userId);
         });
 

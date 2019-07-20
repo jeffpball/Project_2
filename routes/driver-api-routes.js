@@ -31,7 +31,7 @@ module.exports = function (app) {
 
 
     // Create a new ride
-    app.post("/api/rides", function (req, res) {
+    app.post("/api/rides", function (req, res, email) {
         db.driverRide.create(req.body).then(function (dbRides) {
             res.json(dbRides);
             emailer();

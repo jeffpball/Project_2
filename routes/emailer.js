@@ -12,7 +12,7 @@ module.exports = function(){
       
       var mailOptions = {
         from: 'coding_test@yahoo.com',
-        to: 'xiejing418@hotmail.com',
+        to: "xiejing418@hotmail.com",
         subject: 'ComfyRide Booking Confirmation',
         text: 'Your ComfyRide has been scheduled, please log in your account to review the details. :)'
       };
