@@ -79,7 +79,9 @@ $(document).ready(function () {
         } else {
             newTr.append("<td>No</td>");
         }
+
         newTr.append("<button class='joinRide' id=" + data.id + ">Join Ride</button>");
+
         return newTr;
     }
 
@@ -89,6 +91,7 @@ $(document).ready(function () {
             $("#rides-output").prepend(rows);
         }
     }
+
 
     //function to create a map with points and lines on it
 
