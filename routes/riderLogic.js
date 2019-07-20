@@ -2,11 +2,14 @@ var moment = require('moment');
 //const distance = require('google-distance-matrix');
 
 //function to determine if rider and driver zips are the same
-var compZips = function(riderStartZip, riderEndZip, data){
+var zipCall = function(data, riderStartZip, riderEndZip){
     var ridesPosZips = [];
     for (var i = 0; i < data.length; i++){
-        
+        if((data[i].zip_code_pickup == riderStartZip) && (data[i].zip_code_dropoff == riderEndZip)){
+           ridesPosZips.push(data[i])
+        }
     }
+    return ridesPosZips;
 }
 
 //function to determine distance between start and end points. THIS IS DEPRICATED DUE TO THE DIFFICULTY OF WORKING WITH DISTANCE MATRIX
@@ -55,5 +58,6 @@ var addRG = function (str) {
 module.exports = {
     timeMath: timeMath,
     //distanceCall: distanceCall,
-    addRG: addRG
+    addRG: addRG,
+    zipCall: zipCall
 }
