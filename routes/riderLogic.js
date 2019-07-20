@@ -9,6 +9,7 @@ var zipCall = function(data, riderStartZip, riderEndZip){
            ridesPosZips.push(data[i])
         }
     }
+    console.log("in zips " + ridesPosZips)
     return ridesPosZips;
 }
 
@@ -47,6 +48,7 @@ var timeMath = function (data, startTime, endTime) {
             ridesPosTime.push(data[i]);
         };
     };
+    console.log("in time " + ridesPosTime);
     return ridesPosTime;
 };
 
