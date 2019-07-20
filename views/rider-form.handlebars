@@ -160,10 +160,28 @@
                 <button type="submit" class="btn btn-primary" id="sub">Submit</button>
 
                 <br>
+                <br>
 
                 <h4>Possible Rides</h4>
                 
-                <table id="rides_output" class="display" width="100%"></table>
+                <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Departure Time</th>
+                  <th>Pick Up Address</th>
+                  <th>Drop Off Address</th>
+                  <th>Number of Riders</th>
+                  <th>Female Ride Only</th>
+                  <th>Join</th>
+
+                </tr>
+              </thead>
+              <tbody id="rides-output">
+              </tbody>
+
+            </table>
+
+            
 
 
                 <div class="container" style="margin-top: 25px;">
@@ -176,6 +194,9 @@
                 </div>
             </div>
         </div>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA__KLSlLU7OjCSXue87gZffmZaV7IG87c&callback=initMap">
+    </script>
         <script type="text/javascript">
             $(function () {
                 $('#date').datetimepicker({

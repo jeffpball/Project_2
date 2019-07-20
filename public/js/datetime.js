@@ -1,3 +1,7 @@
+//useful global variables
+var riderOrigin = "";
+var riderDest = "";
+
 //onclick for submit button
 $("#sub").on("click", function () {
     //retrieve data from timepickers
@@ -39,9 +43,11 @@ var postRides = function (startT, endT, arrAddress, arrZip) {
         })
     }).then(function (response) {
         console.log(response);
-        var tableData = []
-        for(var i = 0; i < response.length; i++){
-            var tableRow
+        var rowsToAdd1 = [];
+        for (var i = 0; i < response.length; i++) {
+            console.log("adding rows")    
+            rowsToAdd1.push(rideReturn(response[i]));
+                renderPastRideList(rowsToAdd1);
         }
     })
 }
@@ -49,7 +55,27 @@ var postRides = function (startT, endT, arrAddress, arrZip) {
 
 //function to build table from response
 var rideReturn = function (data) {
-    
+    console.log("generating new table row")    
+    var newTr = $("<tr>");
+        newTr.data("ride", data);
+        newTr.append("<td>" + moment(data.departure_time).format('MMMM Do YYYY, h:mm:ss a')+ "</td>");
+        newTr.append("<td>" + addRG(data.pick_up_address) + "</td>");
+        newTr.append("<td>" + addRG(data.drop_off_address) + "</td>");
+        newTr.append("<td>" + data.max_number_riders + "</td>");
+        if (data.female_ride_only) {
+            newTr.append("<td>Yes</td>");
+        } else {
+            newTr.append("<td>No</td>");
+        }
+        newTr.append("<button>Join Ride</button>");
+        return newTr;
+}
+
+function renderPastRideList(rows) {
+    console.log("rendering row")
+    if (rows.length) {
+        $("#rides-output").prepend(rows);
+    }
 }
 
 //function to create a map with points and lines on it
@@ -65,7 +91,8 @@ var formData = function () {
     var locTwo = $("#destAddress").val().trim() + "," +
         $("#destAddress2").val().trim() + "," + $("#destCity").val().trim() +
         "," + $("#destState").val().trim() + "," + $("#destZip").val().trim()
-
+    riderOrigin = addRG(locOne);
+    riderDest = addRG(locTwo);
     locations.push(locOne, locTwo);
     return locations
 }
@@ -81,3 +108,7 @@ var formZips = function () {
     return zips
 }
 
+//helper regex function
+var addRG = function (str) {
+    return str.replace(/[, ]+/g, " ").trim();
+ }
