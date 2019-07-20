@@ -1,5 +1,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var emailer = require("./emailer.js");
+
 
 module.exports = function (app) {
     // Get all riders' rides
