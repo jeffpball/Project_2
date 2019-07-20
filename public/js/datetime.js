@@ -138,7 +138,7 @@ $(document).ready(function () {
     function submitJoinRide(ride) {
         $.post("/api/rider/rides", ride, function (data) {
             // console.log("Data stored in mysql " + data);
-            // window.location.replace("/members/?user_id=" + userId);
+            window.location.replace("/members/?user_id=" + userId);
         });
 
     }

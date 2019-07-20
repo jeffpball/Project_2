@@ -46,9 +46,33 @@ $(document).ready(function () {
 
     })
     
-    function createRideRow(rideData) {
+    // Driver table
+    // Function for retrieving authors and getting them ready to be rendered to the page
+    $.get("/api/users/" + userId, function (data) {
+        var rowsToAdd1 = [];
+        var rowsToAdd2 = [];
+
+        var rideData = data.driverRide;
+        for (var i = 0; i < rideData.length; i++) {
+            var departureTime = moment (rideData[i].departure_time).format("X");
+            console.log(departureTime);
+            if (departureTime < curretDateTime ) {
+                rowsToAdd2.push(createRideRowDriver(rideData[i]));
+                renderPastRideList(rowsToAdd2);
+
+            } else {
+                rowsToAdd1.push(createRideRowDriver(rideData[i]));
+                renderUpcomingRideList(rowsToAdd1);
+            }
+
+        }
+
+    });
+
+    function createRideRowDriver(rideData) {
         var newTr = $("<tr>");
         newTr.data("ride", rideData);
+        newTr.append("<td>Driver</td>");
         newTr.append("<td>" + moment(rideData.departure_time).format('MMMM Do YYYY, h:mm:ss a')+ "</td>");
         newTr.append("<td>" + addRG(rideData.pick_up_address) + "</td>");
         newTr.append("<td>" + addRG(rideData.drop_off_address) + "</td>");
@@ -62,27 +86,63 @@ $(document).ready(function () {
         return newTr;
     }
 
+    // A function for rendering the list of rides to the page
+    function renderUpcomingRideList(rows) {
+        upcomingRideList.children().not(":last").remove();
+        // authorContainer.children(".alert").remove();
+        if (rows.length) {
+            // console.log(rows);
+            upcomingRideList.prepend(rows);
+        }
+    }
+
+
+    function renderPastRideList(rows) {
+        // PastRideList.children().not(":last").remove();
+        // authorContainer.children(".alert").remove();
+        if (rows.length) {
+            // console.log(rows);
+            PastRideList.prepend(rows);
+        }
+    }
+
+     // Rider table
     // Function for retrieving authors and getting them ready to be rendered to the page
-    $.get("/api/users/" + userId, function (data) {
+    $.get("/api/rider/" + userId, function (data) {
+        console.log(data);
         var rowsToAdd1 = [];
         var rowsToAdd2 = [];
 
         var rideData = data.driverRide;
-        for (var i = 0; i < rideData.length; i++) {
-            var departureTime = moment (rideData[i].departure_time).format("X");
+            var departureTime = moment (rideData.departure_time).format("X");
             console.log(departureTime);
             if (departureTime < curretDateTime ) {
-                rowsToAdd2.push(createRideRow(rideData[i]));
+                rowsToAdd2.push(createRideRowRider(rideData));
                 renderPastRideList(rowsToAdd2);
 
             } else {
-                rowsToAdd1.push(createRideRow(rideData[i]));
+                rowsToAdd1.push(createRideRowRider(rideData));
                 renderUpcomingRideList(rowsToAdd1);
             }
 
-        }
-
     });
+ 
+    function createRideRowRider(rideData) {
+        var newTr = $("<tr>");
+        newTr.data("ride", rideData);
+        newTr.append("<td>Rider</td>");
+        newTr.append("<td>" + moment(rideData.departure_time).format('MMMM Do YYYY, h:mm:ss a')+ "</td>");
+        newTr.append("<td>" + addRG(rideData.pick_up_address) + "</td>");
+        newTr.append("<td>" + addRG(rideData.drop_off_address) + "</td>");
+        newTr.append("<td>" + rideData.max_number_riders + "</td>");
+        if (rideData.female_ride_only) {
+            newTr.append("<td>Yes</td>");
+        } else {
+            newTr.append("<td>No</td>");
+        }
+        newTr.append("<button>Map Button</button>");
+        return newTr;
+    }
 
 
     // A function for rendering the list of rides to the page
@@ -105,7 +165,8 @@ $(document).ready(function () {
         }
     }
 
-    console.log(curretDateTime);
+
+    // console.log(curretDateTime);
 
 })
 

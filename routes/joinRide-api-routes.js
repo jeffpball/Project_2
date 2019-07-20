@@ -2,7 +2,6 @@ var db = require("../models");
 var passport = require("../config/passport");
 var emailer = require("./emailer.js");
 
-
 module.exports = function (app) {
     // Get all riders' rides
     app.get("/api/rider/rides", function (req, res) {
@@ -33,6 +32,21 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/api/rider/:id", function (req, res) {
+        db.joinRide.findOne({
+          where: {
+            UserId: req.params.id
+          },
+          include: [db.driverRide]
+        }).then(function (dbRider) {
+          res.json({
+            riderid: dbRider.UserId,
+            driverRide: dbRider.driverRide
+    
+          });
+        });
+      });
+    
 
     // Create a new ride
     app.post("/api/rider/rides", function (req, res) {
@@ -67,4 +81,3 @@ module.exports = function (app) {
         });
     });
 };
-
