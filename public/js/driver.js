@@ -1,4 +1,5 @@
 
+
 $(document).ready(function () {
 
     // The code below handles the case where we want to get ride posts for a specific driver/user
@@ -65,13 +66,17 @@ $(document).ready(function () {
                 $("#dropoffAddress2").val().trim() + "," + $("#dropoffCity").val().trim() +
                 "," + $("#dropoffState").val().trim() + "," + $("#dropoffZip").val().trim(),
 
+            zip_code_pickup:$("#pickupZip").val().trim(),
+            
+            zip_code_dropoff: $("#dropoffZip").val().trim(),
+
             max_number_riders: $("#riderNumber").val(),
 
             female_ride_only: female_ride_option,
             //driverrides foreign key (user id)
             UserId: userId
-        };
 
+        };
 
         submitRide(newRide);
 
