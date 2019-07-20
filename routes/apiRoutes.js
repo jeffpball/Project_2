@@ -4,7 +4,7 @@ var riderLogic = require("./riderLogic")
 
 
 module.exports = function (app) {
-  app.post("/api/rides/search/", function (req, res) {
+  app.post("/rides/api/rides/search/", function (req, res) {
     db.driverRide.findAll({
     }).then(function(response){
       //console.log(response);
