@@ -52,8 +52,8 @@ module.exports = function (app) {
     app.post("/api/rider/rides", function (req, res) {
         db.joinRide.create(req.body).then(function (dbRides) {
             res.json(dbRides);
-            emailer();
-            console.log("email sent!!!")
+            // emailer(email);
+            // console.log("email sent!!!")
             
         });
     });
