@@ -1,3 +1,4 @@
+//onclick for submit button
 $("#sub").on("click", function () {
     //retrieve data from timepickers
     var windowStart = $("#datetimepicker4").find("input").val();
@@ -10,6 +11,7 @@ $("#sub").on("click", function () {
     //callback for api call
     postRides(mS, mE, riderLocations, riderZips);
 })
+//onclick for map button
 
 //api post call taking two time parameters and two address
 var postRides = function (startT, endT, arrAddress, arrZip) {
@@ -31,6 +33,9 @@ var postRides = function (startT, endT, arrAddress, arrZip) {
         console.log(response);
     })
 }
+
+//function to create a map with points and lines on it
+
 
 //function to retrieve data from form 
 var formData = function(){
