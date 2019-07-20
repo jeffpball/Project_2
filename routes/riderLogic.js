@@ -19,8 +19,8 @@ var zipCall = function(data, riderStartZip, riderEndZip){
 //     var origins = [];
 //     var destinations = [];
 //     console.log(data.length)
+//     origins.push(addRG(riderStart), addRG(riderEnd));
 //     for(var i = 0; i < data.length; i++){
-//         origins.push(addRG(riderStart), addRG(riderEnd));
 //         destinations.push(addRG(data[i].pick_up_address), addRG(data[i].drop_off_address));
 //     }
 //     console.log(origins);
