@@ -6,12 +6,13 @@ $("#sub").on("click", function () {
     var mS = moment(windowStart).toDate();
     var mE = moment(windowEnd).toDate();
     var riderLocations = formData();
+    var riderZips = formZips();
     //callback for api call
-    postRides(mS, mE, riderLocations);
+    postRides(mS, mE, riderLocations, riderZips);
 })
 
 //api post call taking two time parameters and two address
-var postRides = function (startT, endT, arrAddress) {
+var postRides = function (startT, endT, arrAddress, arrZip) {
     $.ajax({
         headers: {
             "Content-Type": "application/json"
@@ -22,7 +23,9 @@ var postRides = function (startT, endT, arrAddress) {
             startTime: startT,
             endTime: endT,
             riderStart: arrAddress[0],
-            riderEnd: arrAddress[1]
+            riderEnd: arrAddress[1],
+            riderStartZip: arrZip[0],
+            riderEndZip : arrZip[1]
         })
     }).then(function(response){
         console.log(response);
@@ -35,14 +38,18 @@ var formData = function(){
     var locOne = $("#inputAddress").val().trim() + "," +
     $("#inputAddress2").val().trim() + "," + $("#inputCity").val().trim() +
     "," + $("#inputState").val().trim() + "," + $("#inputZip").val().trim()
-
     var locTwo = $("#destAddress").val().trim() + "," +
     $("#destAddress2").val().trim() + "," + $("#destCity").val().trim() +
     "," + $("#destState").val().trim() + "," + $("#destZip").val().trim()
-
-    locations.push(locOne);
-    locations.push(locTwo);
-    
+    locations.push(locOne, locTwo);
     return locations
+}
 
+//function to retrieve zipcodes
+var formZips = function(){
+    var zips = [];
+    var zipOne = $("#inputZip").val().trim();
+    var zipTwo = $("#destZip").val().trim();
+    zips.push(zipOne, zipTwo);
+    return zips
 }
