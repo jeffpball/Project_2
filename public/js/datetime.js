@@ -61,6 +61,7 @@ var rideReturn = function (data) {
         } else {
             newTr.append("<td>No</td>");
         }
+        newTr.append("<button id="data[i].id">See on Map</button>");
         newTr.append("<button>Join Ride</button>");
         return newTr;
 }
@@ -72,7 +73,7 @@ function renderPastRideList(rows) {
     }
 }
 
-//function to create a map with points and lines on it
+//function to update map with points and lines on it
 
 
 //function to retrieve data from form 
