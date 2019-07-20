@@ -66,7 +66,9 @@ $(document).ready(function () {
                 $("#dropoffAddress2").val().trim() + "," + $("#dropoffCity").val().trim() +
                 "," + $("#dropoffState").val().trim() + "," + $("#dropoffZip").val().trim(),
 
-            zip_code: $("#dropoffZip").val().trim(),
+            zip_code_pickup:$("#pickupZip").val().trim(),
+            
+            zip_code_dropoff: $("#dropoffZip").val().trim(),
 
             max_number_riders: $("#riderNumber").val(),
 

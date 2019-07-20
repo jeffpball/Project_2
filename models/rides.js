@@ -12,7 +12,14 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING,
           allowNull: false,
       },
-      zip_code: {
+      zip_code_pickup: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          len: [1, 5]
+        }
+      },  
+      zip_code_dropoff: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
