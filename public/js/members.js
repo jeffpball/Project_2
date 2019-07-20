@@ -6,7 +6,15 @@ $(document).ready(function () {
     var url = window.location.search;
     var userId;
     var userName;
+    var upcomingRideList = $(".upcomingRides");
+    var PastRideList = $(".pastRides");
 
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var curretDateTime = date+' '+time;
+
+    curretDateTime = moment(curretDateTime).format("X");
 
     if (url.indexOf("?user_id=") !== -1) {
         userId = url.split("=")[1];
@@ -38,7 +46,7 @@ $(document).ready(function () {
         var newTr = $("<tr>");
         newTr.data("ride", rideData);
         newTr.append("<td>" + rideData.departure_time + "</td>");
-        newTr.append("<td>" + rideData.pick_up_address +"</td>");
+        newTr.append("<td>" + rideData.pick_up_address + "</td>");
         newTr.append("<td>" + rideData.drop_off_address + "</td>");
         newTr.append("<td>" + rideData.max_number_riders + "</td>");
         if (rideData.female_ride_only) {
@@ -46,27 +54,53 @@ $(document).ready(function () {
         } else {
             newTr.append("<td>No</td>");
         }
-
+        newTr.append("<button>Map Button</button>");
         return newTr;
     }
 
     // Function for retrieving authors and getting them ready to be rendered to the page
     $.get("/api/users/" + userId, function (data) {
-            var rideData = data.driverRide;
-            for (var i = 0; i < rideData.length; i++) {
-                createRideRow(rideData[i]);
-                // console.log(rideData[i]);
+        var rowsToAdd1 = [];
+        var rowsToAdd2 = [];
+
+        var rideData = data.driverRide;
+        for (var i = 0; i < rideData.length; i++) {
+            var departureTime = moment (rideData[i].departure_time).format("X");
+            console.log(departureTime);
+            if (departureTime < curretDateTime ) {
+                rowsToAdd2.push(createRideRow(rideData[i]));
+                renderPastRideList(rowsToAdd2);
+
+            } else {
+                rowsToAdd1.push(createRideRow(rideData[i]));
+                renderUpcomingRideList(rowsToAdd1);
             }
-        });
-    
+
+        }
+
+    });
 
 
+    // A function for rendering the list of rides to the page
+    function renderUpcomingRideList(rows) {
+        upcomingRideList.children().not(":last").remove();
+        // authorContainer.children(".alert").remove();
+        if (rows.length) {
+            // console.log(rows);
+            upcomingRideList.prepend(rows);
+        }
+    }
 
 
+    function renderPastRideList(rows) {
+        // PastRideList.children().not(":last").remove();
+        // authorContainer.children(".alert").remove();
+        if (rows.length) {
+            // console.log(rows);
+            PastRideList.prepend(rows);
+        }
+    }
 
-
-
-
-
+    console.log(curretDateTime);
 
 })
