@@ -24,13 +24,13 @@
   
 
   <div class="container">
-      <div class="col-md-8 bg-light" style="margin: auto; margin-top: 50px; border-radius: 10px; padding: 20px;">
+      <div class="col-md-12 bg-light" style="margin: auto; margin-top: 50px; border-radius: 10px; padding: 20px;">
 
           <h3 id="username" style="padding-bottom: 10px; border-bottom: 2px solid rgba(128, 128, 128, 0.281);"><span class="member-name"></span></h3>
 
           <div class="container" style="margin-bottom: 20px; margin-top: 20px;">
               <div class="row">
-                <div class="col-md-6 col-md">
+                <div class="col-md-11 col-md">
                  <!-- Below we will need to dynamically render the average user rating. -->
                   <h3 id="user_rating">User Rating: { } </h3>
                 </div>
@@ -39,12 +39,24 @@
 
             <div class="container">
                 <div class="row">
-                  <div class="col-md-6 col-md">
+                  <div class="col-md-11 col-md">
                    <!-- Below we will need to dynamically render the list of upcoming rides and drives. -->
                     <h3>Upcoming Rides:</h3>
-                    <li id="upcoming_rides" style="margin-bottom: 20px;">{ }</li>
-                    <h3>Upcoming Drives:</h3>
-                    <li id="upcoming_drives" style="margin-bottom: 20px;">{ }</li>
+                    <!-- <li id="upcoming_rides" style="margin-bottom: 20px;">{ }</li> -->
+                    <!-- <h3>Upcoming Drives:</h3>
+                    <li id="upcoming_drives" style="margin-bottom: 20px;">{ }</li> -->
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Departure Time</th>
+                          <th>Pick Up Address</th>
+                          <th>Drop Off Address</th>
+                          <th>Number of Riders</th>
+                          <th>Female Ride Only</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  
                   </div>
                 </div>
             </div>

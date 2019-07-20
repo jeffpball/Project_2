@@ -1,4 +1,5 @@
 var db = require("../models");
+var emailer = require("./emailer.js");
 
 module.exports = function (app) {
     // Get all drivers rides
@@ -9,7 +10,7 @@ module.exports = function (app) {
         }
         db.driverRide.findAll({
             where: query,
-            // include: [db.User]
+            include: [db.User]
 
         }).then(function (dbRides) {
             res.json(dbRides);
@@ -33,6 +34,9 @@ module.exports = function (app) {
     app.post("/api/rides", function (req, res) {
         db.driverRide.create(req.body).then(function (dbRides) {
             res.json(dbRides);
+            emailer();
+            console.log("email sent!!!")
+            
         });
     });
 

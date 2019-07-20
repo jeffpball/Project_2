@@ -12,6 +12,20 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING,
           allowNull: false,
       },
+      zip_code_pickup: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          len: [1, 5]
+        }
+      },  
+      zip_code_dropoff: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          len: [1, 5]
+        }
+      },  
       max_number_riders: {
            type: DataTypes.INTEGER,
            allowNull: false,
@@ -19,6 +33,13 @@ module.exports = function(sequelize, DataTypes) {
             len: [1,4]
           }
       },
+      actual_number_riders: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        validate: {
+          len: [1, 4]
+        }
+      },  
       female_ride_only: {
           type: DataTypes.BOOLEAN,
           allowNull: true,
