@@ -8,6 +8,10 @@ $(document).ready(function () {
     var userName;
     var upcomingRideList = $(".upcomingRides");
     var PastRideList = $(".pastRides");
+    // trim ",," from the address
+     var addRG = function (str) {
+        return str.replace(/[, ]+/g, " ").trim();
+     }
 
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -41,13 +45,13 @@ $(document).ready(function () {
         window.location.replace("/rides/?user_id=" + userId);
 
     })
-
+    
     function createRideRow(rideData) {
         var newTr = $("<tr>");
         newTr.data("ride", rideData);
-        newTr.append("<td>" + rideData.departure_time + "</td>");
-        newTr.append("<td>" + rideData.pick_up_address + "</td>");
-        newTr.append("<td>" + rideData.drop_off_address + "</td>");
+        newTr.append("<td>" + moment(rideData.departure_time).format('MMMM Do YYYY, h:mm:ss a')+ "</td>");
+        newTr.append("<td>" + addRG(rideData.pick_up_address) + "</td>");
+        newTr.append("<td>" + addRG(rideData.drop_off_address) + "</td>");
         newTr.append("<td>" + rideData.max_number_riders + "</td>");
         if (rideData.female_ride_only) {
             newTr.append("<td>Yes</td>");
@@ -104,3 +108,4 @@ $(document).ready(function () {
     console.log(curretDateTime);
 
 })
+
