@@ -1,25 +1,41 @@
 var moment = require('moment');
+//const distance = require('google-distance-matrix');
 
-var distanceCall = function (riderStart, riderEnd, driverStart, driverEnd) {
-    var service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix(
-        {
-            origins: [riderStart, riderEnd],
-            destinations: [driverStart, driverEnd],
-            travelMode: 'DRIVING',
-            unitSystem: google.maps.UnitSystem.IMPERIAL,
-        }, callback());
-
-    function callback(response, status) {
-        if (status !== google.maps.DistanceMatrixStatus.OK) {
-            console.log('Error:', status);
-        } else {
-            console.log(response);
-            $("#distance").text(response.rows[0].elements[0].distance.text).show();
-            $("#duration").text(response.rows[0].elements[0].duration.text).show();
+//function to determine if rider and driver zips are the same
+var zipCall = function(data, riderStartZip, riderEndZip){
+    var ridesPosZips = [];
+    for (var i = 0; i < data.length; i++){
+        if((data[i].zip_code_pickup == riderStartZip) && (data[i].zip_code_dropoff == riderEndZip)){
+           ridesPosZips.push(data[i])
         }
     }
+    return ridesPosZips;
 }
+
+//function to determine distance between start and end points. THIS IS DEPRICATED DUE TO THE DIFFICULTY OF WORKING WITH DISTANCE MATRIX
+// var distanceCall = function (riderStart, riderEnd, data) {
+//     var ridesPosDist = [];
+//     var origins = [];
+//     var destinations = [];
+//     console.log(data.length)
+//     for(var i = 0; i < data.length; i++){
+//         origins.push(addRG(riderStart), addRG(riderEnd));
+//         destinations.push(addRG(data[i].pick_up_address), addRG(data[i].drop_off_address));
+//     }
+//     console.log(origins);
+//     console.log(destinations);
+//     distance.key(process.env.API_KEY);
+//     distance.units("imperial");
+//     distance.matrix(origins,destinations, function(err, distances){
+//         if (!err){
+//             console.log(distances.rows[0].elements, distances.rows[1].elements, distances.rows[2].elements, distances.rows[3].elements);
+//             for(var i = 0; i < data.length; i ++){
+//                 //console.log(distances.rows[i].elements);
+//                 //console.log(distances.rows[(i*2)].elements.distance.text);
+//             }
+//         }
+//     })
+// };
 //function to do time math
 var timeMath = function (data, startTime, endTime) {
     var startNum = moment(startTime).format("X");
@@ -34,7 +50,14 @@ var timeMath = function (data, startTime, endTime) {
     return ridesPosTime;
 };
 
+//function to clean up adress inputs
+var addRG = function (str) {
+    return str.replace(/[, ]+/g, " ").trim();
+}
+
 module.exports = {
     timeMath: timeMath,
-    distanceCall: distanceCall
+    //distanceCall: distanceCall,
+    addRG: addRG,
+    zipCall: zipCall
 }
