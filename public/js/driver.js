@@ -66,6 +66,8 @@ $(document).ready(function () {
                 $("#dropoffAddress2").val().trim() + "," + $("#dropoffCity").val().trim() +
                 "," + $("#dropoffState").val().trim() + "," + $("#dropoffZip").val().trim(),
 
+            zip_code: $("#dropoffZip").val().trim(),
+
             max_number_riders: $("#riderNumber").val(),
 
             female_ride_only: female_ride_option,
