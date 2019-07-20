@@ -9,7 +9,14 @@
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
-<body>
+<style>
+  @media 800px {
+
+  }
+
+</style>
+
+<body style="background-image: url(/img/background.svg); background-size: cover">
   <nav class="navbar navbar-light bg-light" >
     <div class="container-fluid" style="display: flex; align-items: flex-start; justify-content: flex-start;">
       <div class="navbar-header">
@@ -24,7 +31,9 @@
   </nav>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 bg-light" style="margin: auto; margin-top: 50px; border-radius: 10px; padding: 20px;">
+      <div id="landing-image" style="background-image: url(/img/screenshot.png); background-size: cover; width: 400px; height: 400px; margin-top: 150px; margin-left: 50px;"></div>
+     
+      <div class="col-md-4 bg-light" style="margin: auto; margin-top: 100px; margin-left: 200px; border-radius: 10px; padding: 20px;">
         <h2>Sign Up</h2>
         <form class="signup">
           <div class="form-group">
