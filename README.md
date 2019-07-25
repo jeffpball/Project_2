@@ -69,3 +69,6 @@ To create a digital platform where people can post carpool routes and join rides
     * Enter destination
     * Possible rides
     * Join ride
+
+## Link
+[ComfyRide App](https://desolate-beach-90787.herokuapp.com/) 
