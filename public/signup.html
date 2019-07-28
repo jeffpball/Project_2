@@ -6,19 +6,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="styles/styles.css" rel="stylesheet">
 </head>
-
-<style>
-  @media 800px {
-
-  }
-
-</style>
 
 <body style="background-image: url(/img/background2.svg); background-size: cover">
   <nav class="navbar navbar-light bg-light" >
-    <div class="container-fluid" style="display: flex; align-items: flex-start; justify-content: flex-start;">
+    <div id="logo-container" class="container-fluid" style="display: flex; align-items: flex-start; justify-content: flex-start;">
       <div class="navbar-header">
         <div style="display: flex; flex-direction:row; align-items: center;">
           <i class="fas fa-car fa-2x" style="color:rgb(0, 207, 138)"></i>
@@ -32,7 +25,7 @@
   <div class="container">
     <div class="row">
      
-      <div class="col-md-4 bg-light" style="margin: auto; margin-top: 150px; border-radius: 10px; padding: 20px;">
+      <div id="signup-container" class="col-md-4 bg-light" style="margin: auto; margin-top: 50px; border-radius: 10px; padding: 20px;">
         <h2>Sign Up</h2>
         <form class="signup">
           <div class="form-group">
@@ -59,7 +52,7 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
-          <button type="submit" class="btn btn-light">Sign Up</button>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
         <br />
         <p>Or log in <a href="/login">here</a></p>

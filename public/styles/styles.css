@@ -6,3 +6,36 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-image: none !important;
+    background: none;
+  }
+
+  #signup-container {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    width: 290px !important;
+  }
+
+  #login-container {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    width: 290px !important;
+  }
+
+  #logo-container {
+    justify-content: center !important;
+  }
+
+  #upcoming-rides-table th {
+    font-size: 10px !important;
+    
+  }
+
+  #change {
+    display: none !important;
+  }
+
+}

@@ -2,7 +2,7 @@
 {
   "development": {
     "username": "root",
-    "password": "bananas",
+    "password": "Oliver01$",
     "database": "comfyride_db",
     "host": "localhost",
     "dialect": "mysql",

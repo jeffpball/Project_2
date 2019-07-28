@@ -6,21 +6,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="styles/styles.css" rel="stylesheet">
 </head>
 
 <body>
   <nav class="navbar navbar-light bg-light" >
-    <div class="container-fluid" style="display: flex; align-items: flex-start; justify-content: flex-start;">
+    <div id="logo-container" class="container-fluid" style="display: flex; align-items: flex-start; justify-content: flex-start;">
       <div class="navbar-header">
-        <div style="display: flex; flex-direction:row; align-items: center;">
+        <div style="display: flex; flex-direction: row; align-items: center;">
           <i class="fas fa-car fa-2x" style="color:rgb(0, 207, 138)"></i>
           <h3 style="margin-left: 5px; margin-bottom: 0px; padding: 0; color:rgb(0, 207, 138)">ComfyRide</h3>
         </div>
       </div>
     </div>
   </nav>
-  <div class="container">
+  <div id="login-container" class="container">
     <div class="row">
         <div class="col-md-4 bg-light" style="margin: auto; margin-top: 50px; border-radius: 10px; padding: 20px;">
         <h2>Login</h2>
@@ -33,7 +33,7 @@
             <label for="exampleInputPassword1">Password</label>
             <input type="password" class="form-control" id="password-input" placeholder="Password">
           </div>
-          <button type="submit" class="btn btn-default">Login</button>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <br />
         <p>Or sign up <a href="/">here</a></p>
