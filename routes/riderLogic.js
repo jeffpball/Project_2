@@ -1,5 +1,5 @@
 var moment = require('moment');
-//const distance = require('google-distance-matrix');
+const distance = require('google-distance-matrix');
 
 //function to determine if rider and driver zips are the same
 var zipCall = function(data, riderStartZip, riderEndZip){
@@ -13,30 +13,67 @@ var zipCall = function(data, riderStartZip, riderEndZip){
     return ridesPosZips;
 }
 
-//function to determine distance between start and end points. THIS IS DEPRICATED DUE TO THE DIFFICULTY OF WORKING WITH DISTANCE MATRIX
-// var distanceCall = function (riderStart, riderEnd, data) {
-//     var ridesPosDist = [];
-//     var origins = [];
-//     var destinations = [];
-//     console.log(data.length)
-//     origins.push(addRG(riderStart), addRG(riderEnd));
-//     for(var i = 0; i < data.length; i++){
-//         destinations.push(addRG(data[i].pick_up_address), addRG(data[i].drop_off_address));
-//     }
-//     console.log(origins);
-//     console.log(destinations);
-//     distance.key(process.env.API_KEY);
-//     distance.units("imperial");
-//     distance.matrix(origins,destinations, function(err, distances){
-//         if (!err){
-//             console.log(distances.rows[0].elements, distances.rows[1].elements, distances.rows[2].elements, distances.rows[3].elements);
-//             for(var i = 0; i < data.length; i ++){
-//                 //console.log(distances.rows[i].elements);
-//                 //console.log(distances.rows[(i*2)].elements.distance.text);
-//             }
-//         }
-//     })
-// };
+//function to determine distance between ride and rider start.
+var startDistCall = function (data, riderStart, riderEnd, maxDist) {
+    var origins = [];
+    var destinations = [];
+    origins.push(addRG(riderStart));
+    for(var i = 0; i < data.length; i++){
+        destinations.push(addRG(data[i].pick_up_address));
+    }
+    distance.key(process.env.API_KEY);
+    distance.units("imperial");
+    distance.matrix(origins, destinations, function(err, distances){
+        if (!err){
+            var startDist = [];
+            for(var i = 0; i < distances.length; i ++){
+                console.log(distances.rows[i]);
+                if(distances.rows[i].elements.distance.value){
+                    startDist.push(distances.rows[i].elements.distance.value)
+                }
+                else{
+                    startDist.push("bad address")
+                }
+            }
+            endDistCall(data, riderEnd, maxDist, startDist);
+        }
+    })
+};
+
+//function to determine distance between ride and rider end
+var endDistCall = function(data, riderEnd, maxDist, startDist){
+    var origins = [];
+    var destinations = [];
+    console.log("in endDistCall")
+    origins.push(addRG(riderEnd));
+    for(var i = 0; i < data.length; i++){
+        destinations.push(addRG(data[i].drop_off_address));
+    }
+    distance.key(process.env.API_KEY);
+    distance.units("imperial");
+    distance.matrix(origins, destinations, function(err, distances){
+        if (!err){
+            var endDist = [];
+            var ridesPosDist = [];
+            for(var i = 0; i < distances.length; i ++){
+                console.log(distances.rows[i].elements.distance.value);
+                if(distances.rows[i].elements.distance.value){
+                    endDist.push(distances.rows[i].elements.distance.value)
+                }
+                else{
+                    endDist.push("bad address")
+                }
+            }
+            for(var j = 0; i < data.length; j++){
+                if (Number(startDist[i]) + Number(endDist[i]) <= milesToMeters(maxDist)){
+                    ridesPosDist.push(data[i]);
+                }
+            }
+            return ridesPosDist
+        }
+    })
+};
+
 //function to do time math
 var timeMath = function (data, startTime, endTime) {
     var startNum = moment(startTime).format("X");
@@ -48,7 +85,7 @@ var timeMath = function (data, startTime, endTime) {
             ridesPosTime.push(data[i]);
         };
     };
-    console.log("in time " + ridesPosTime);
+    console.log("in time " + ridesPosTime.length);
     return ridesPosTime;
 };
 
@@ -57,9 +94,15 @@ var addRG = function (str) {
     return str.replace(/[, ]+/g, " ").trim();
 }
 
+//function to convert miles to meters
+var milesToMeters = function(val){
+    var meterOut = Number(val) * 1609.34;
+    return meterOut
+}
+
 module.exports = {
     timeMath: timeMath,
-    //distanceCall: distanceCall,
+    startDistCall: startDistCall,
     addRG: addRG,
     zipCall: zipCall
 }

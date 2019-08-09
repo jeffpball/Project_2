@@ -22,8 +22,9 @@ $(document).ready(function () {
         var mE = moment(windowEnd).toDate();
         var riderLocations = formData();
         var riderZips = formZips();
+        var maxDist = formDist();
         //callback for api call
-        postRides(mS, mE, riderLocations, riderZips);
+        postRides(mS, mE, riderLocations, riderZips, maxDist);
 
     })
     //onclick for map button
@@ -34,7 +35,7 @@ $(document).ready(function () {
     //onclick for map button
 
     //api post call taking two time parameters and two address
-    var postRides = function (startT, endT, arrAddress, arrZip) {
+    var postRides = function (startT, endT, arrAddress, arrZip, maxDist) {
         $.ajax({
             headers: {
                 "Content-Type": "application/json"
@@ -47,9 +48,8 @@ $(document).ready(function () {
                 riderStart: arrAddress[0],
                 riderEnd: arrAddress[1],
                 riderStartZip: arrZip[0],
-
-                riderEndZip: arrZip[1]
-
+                riderEndZip: arrZip[1],
+                maxDist: maxDist
             })
         }).then(function (response) {
             console.log(response);
@@ -59,7 +59,6 @@ $(document).ready(function () {
                 rowsToAdd1.push(rideReturn(response[i]));
                 renderPastRideList(rowsToAdd1);
             }
-
             $(".joinRide").on("click", joinNewRide);
         })
     }
@@ -79,9 +78,7 @@ $(document).ready(function () {
         } else {
             newTr.append("<td>No</td>");
         }
-
         newTr.append("<button class='joinRide' id=" + data.id + ">Join Ride</button>");
-
         return newTr;
     }
 
@@ -100,7 +97,6 @@ $(document).ready(function () {
     var formData = function () {
         var locations = [];
         var locOne = $("#inputAddress").val().trim() + "," +
-
             $("#inputAddress2").val().trim() + "," + $("#inputCity").val().trim() +
             "," + $("#inputState").val().trim() + "," + $("#inputZip").val().trim()
         var locTwo = $("#destAddress").val().trim() + "," +
@@ -113,14 +109,18 @@ $(document).ready(function () {
     }
 
     //function to retrieve zipcodes
-
     var formZips = function () {
-
         var zips = [];
         var zipOne = $("#inputZip").val().trim();
         var zipTwo = $("#destZip").val().trim();
         zips.push(zipOne, zipTwo);
         return zips
+    }
+
+    //function to retrieve maz additional distance
+    var formDist = function (){
+        var extraDistance = $("#inputDist").val().trim();
+        return extraDistance
     }
 
 

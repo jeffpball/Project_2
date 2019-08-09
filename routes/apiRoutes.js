@@ -10,8 +10,10 @@ module.exports = function (app) {
       //console.log(response);
       var ridePosTime = riderLogic.timeMath(response, req.body.startTime, req.body.endTime);
       console.log(ridePosTime);
-      var ridePosZip = riderLogic.zipCall(ridePosTime, req.body.riderStartZip, req.body.riderEndZip)
-      res.json(ridePosZip);
+      //var ridePosZip = riderLogic.zipCall(ridePosTime, req.body.riderStartZip, req.body.riderEndZip)
+      //res.json(ridePosZip);
+      var ridePosDist = riderLogic.startDistCall(ridePosTime, req.body.riderStart, req.body.riderEnd, req.body.maxDist);
+      res.json(ridePosDist);
     })    
   });
 };
